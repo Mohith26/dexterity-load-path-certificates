@@ -14,11 +14,11 @@ renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x1a1a1a);
 const camera = new THREE.PerspectiveCamera(58, 1, 0.05, 50);
-const HOME = { pos: new THREE.Vector3(T.width / 2, 1.85, T.depth + 2.35), tgt: new THREE.Vector3(T.width / 2, 1.05, 0.55) };
+const HOME = { pos: new THREE.Vector3(T.width / 2, 2.45, T.depth + 2.7), tgt: new THREE.Vector3(T.width / 2, 0.75, 0.45) };
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true; controls.maxDistance = 9; controls.minDistance = 1;
 function resetView() { camera.position.copy(HOME.pos); controls.target.copy(HOME.tgt); controls.update(); }
-scene.add(new THREE.HemisphereLight(0xffffff, 0x3a3020, 1.15));
+scene.add(new THREE.HemisphereLight(0xffffff, 0x4a4030, 1.35));
 const sun = new THREE.DirectionalLight(0xffffff, 1.1); sun.position.set(1.5, 4, 4); scene.add(sun);
 
 function woodTexture() {
@@ -31,7 +31,7 @@ function woodTexture() {
 }
 function wallTexture() {
   const c = document.createElement('canvas'); c.width = 256; c.height = 256; const g = c.getContext('2d');
-  const grd = g.createLinearGradient(0, 0, 0, 256); grd.addColorStop(0, '#9a9a9a'); grd.addColorStop(1, '#6e6e6e'); g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
+  const grd = g.createLinearGradient(0, 0, 0, 256); grd.addColorStop(0, '#b4b4b4'); grd.addColorStop(1, '#858585'); g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
   const r = L.mulberry32(8); for (let k = 0; k < 900; k++) { g.fillStyle = `rgba(0,0,0,${r() * 0.06})`; g.fillRect(r() * 256, r() * 256, 2 + r() * 6, 2 + r() * 6); }
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
