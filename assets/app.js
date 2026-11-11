@@ -25,7 +25,7 @@ function woodTexture() {
   const c = document.createElement('canvas'); c.width = 512; c.height = 512; const g = c.getContext('2d');
   g.fillStyle = '#4b3a2b'; g.fillRect(0, 0, 512, 512);
   const r = L.mulberry32(4);
-  for (let i = 0; i < 512; i += 32) { g.fillStyle = `rgba(${40 + r() * 30},${30 + r() * 20},${20 + r() * 10},0.55)`; g.fillRect(i, 0, 30, 512); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(i + 30, 0, 2, 512); }
+  for (let i = 0; i < 512; i += 32) { g.fillStyle = `rgba(${58 + r() * 26},${42 + r() * 16},${28 + r() * 10},0.6)`; g.fillRect(i, 0, 30, 512); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(i + 30, 0, 2, 512); }
   for (let k = 0; k < 1400; k++) { g.fillStyle = `rgba(0,0,0,${0.05 + r() * 0.08})`; g.fillRect(r() * 512, r() * 512, 1 + r() * 2, 8 + r() * 40); }
   const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 2); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
