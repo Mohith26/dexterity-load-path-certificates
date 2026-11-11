@@ -41,10 +41,10 @@ floor.rotation.x = -Math.PI / 2; floor.position.set(T.width / 2, 0, (T.depth + 3
 const wallMat = new THREE.MeshStandardMaterial({ map: wallTexture(), roughness: 0.95, side: THREE.DoubleSide });
 for (const x of [0, T.width]) { const w = new THREE.Mesh(new THREE.PlaneGeometry(T.depth + 3, T.height), wallMat); w.rotation.y = Math.PI / 2; w.position.set(x, T.height / 2, (T.depth + 3) / 2); room.add(w); }
 const front = new THREE.Mesh(new THREE.PlaneGeometry(T.width, T.height), new THREE.MeshStandardMaterial({ color: 0x8c8c8c, roughness: 1 })); front.position.set(T.width / 2, T.height / 2, 0); room.add(front);
-const ceil = new THREE.Mesh(new THREE.PlaneGeometry(T.width, T.depth + 3), new THREE.MeshStandardMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide })); ceil.rotation.x = Math.PI / 2; ceil.position.set(T.width / 2, T.height, (T.depth + 3) / 2); room.add(ceil);
+const ceil = new THREE.Mesh(new THREE.PlaneGeometry(T.width, T.depth + 3), new THREE.MeshStandardMaterial({ color: 0x5c5c5c, emissive: 0x262626, side: THREE.DoubleSide })); ceil.rotation.x = Math.PI / 2; ceil.position.set(T.width / 2, T.height, (T.depth + 3) / 2); room.add(ceil);
 // side rails like the game's logistics posts
 const railMat = new THREE.MeshStandardMaterial({ color: 0x4a4a4a, metalness: 0.4, roughness: 0.6 });
-for (const x of [0.02, T.width - 0.02]) for (const z of [0.6, 1.4, 2.2, 3.0, 3.8]) { const p = new THREE.Mesh(new THREE.BoxGeometry(0.04, T.height, 0.06), railMat); p.position.set(x, T.height / 2, z); room.add(p); }
+for (const x of [0.02, T.width - 0.02]) for (const z of [0.5, 1.25, 2.0]) { const p = new THREE.Mesh(new THREE.BoxGeometry(0.04, T.height, 0.06), railMat); p.position.set(x, T.height / 2, z); room.add(p); }
 // segment boundary (the 2.0 m challenge segment)
 const seg = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(T.width, T.height, T.depth)), new THREE.LineDashedMaterial({ color: 0x48cae4, dashSize: 0.06, gapSize: 0.05, transparent: true, opacity: 0.35 }));
 seg.position.set(T.width / 2, T.height / 2, T.depth / 2); seg.computeLineDistances(); scene.add(seg);
