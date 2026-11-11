@@ -163,14 +163,15 @@ function drawPath() {
   if (state.sel < 0 || state.sel >= state.step) return;
   const run = cur(), sub = run.placed.slice(0, state.step), c = L.certify(sub);
   if (!c.ok) return;
-  const mat = new THREE.LineBasicMaterial({ color: 0x00b4d8 }), dot = new THREE.MeshBasicMaterial({ color: 0x48cae4 });
+  const mat = new THREE.LineBasicMaterial({ color: 0x00b4d8, depthTest: false, transparent: true }), dot = new THREE.MeshBasicMaterial({ color: 0x48cae4, depthTest: false, transparent: true });
+  pathGroup.renderOrder = 10;
   const seen = new Set([state.sel]), queue = [state.sel];
   while (queue.length) {
     const i = queue.shift(), b = sub[i], ct = toThree(b);
     for (const f of c.flows.filter((q) => q.from === i)) {
       const p = new THREE.Vector3(f.point[1], f.point[2] + 0.003, f.point[0]);
-      pathGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(ct.cx, ct.cy, ct.cz), p]), mat));
-      const s = new THREE.Mesh(new THREE.SphereGeometry(0.008 + 0.03 * Math.sqrt(f.f / c.loads[state.sel]), 10, 8), dot); s.position.copy(p); pathGroup.add(s);
+      { const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(ct.cx, ct.cy, ct.cz), p]), mat); ln.renderOrder = 10; pathGroup.add(ln); }
+      const s = new THREE.Mesh(new THREE.SphereGeometry(0.008 + 0.03 * Math.sqrt(f.f / c.loads[state.sel]), 10, 8), dot); s.renderOrder = 11; s.position.copy(p); pathGroup.add(s);
       if (f.to >= 0 && !seen.has(f.to)) { seen.add(f.to); queue.push(f.to); }
     }
   }
