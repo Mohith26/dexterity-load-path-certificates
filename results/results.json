@@ -722,6 +722,7 @@
   "gainPts": 6,
   "ratio70WorstMarginG": 0,
   "ratio70GamesBelow002g": 23,
+  "ratio70GamesWithUncertifiedStep": 8,
   "cert08IqmPct": 43.6
  }
 }

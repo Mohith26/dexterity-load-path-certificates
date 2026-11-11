@@ -5,7 +5,7 @@ import * as L from '../src/loadpath.js';
 const $ = (s) => document.querySelector(s);
 const T = L.TRUCK;
 const CARD = 0xb07a3b, STORE = 'dex-loadpath-v1';
-let RES, SHOW, runs = {}, state = { agent: 'cert05', seed: 1007, step: 120, sel: -1, m: 0.05 }, playing = null;
+let RES, SHOW, runs = {}, state = { agent: 'cert05', seed: 1023, step: 120, sel: -1, m: 0.05 }, playing = null;
 
 // ------------------------------------------------------------------ three.js scene (game view: from the doors)
 const canvas = $('#scene');
@@ -221,7 +221,7 @@ function openRun() {
     <div class="field"><label for="mIn">Margin floor (g)</label><input id="mIn" type="number" min="0" max="0.2" step="0.01" value="${state.m}"></div>
     <button class="btn-green" id="go">Re-pack</button><p id="runMsg" style="margin-top:12px"></p>`;
   $('#go').onclick = async () => {
-    const seed = Math.max(1, Math.min(999999, Math.round(+$('#seedIn').value || 1007))), m = Math.max(0, Math.min(0.2, Math.round(100 * (+$('#mIn').value || 0)) / 100));
+    const seed = Math.max(1, Math.min(999999, Math.round(+$("#seedIn").value || 1023))), m = Math.max(0, Math.min(0.2, Math.round(100 * (+$('#mIn').value || 0)) / 100));
     $('#go').disabled = true; $('#runMsg').textContent = 'Packing 120 boxes with certificates…';
     try { await Promise.all([runAgent(seed, 'cert05', m), runAgent(seed, 'ratio70', m)]); Object.assign(state, { seed, m, agent: 'cert05' }); state.step = cur().placed.length; state.sel = -1; persist(); refresh(); $('#runMsg').innerHTML = `<span class="ok">Done.</span> Certified ${pct(cur().density)} vs 70% rule ${pct(runs[`ratio70:${seed}:0.7`].density)} on this sequence.`; }
     catch (e) { $('#runMsg').innerHTML = `<span class="bad">Run failed: ${e.message}</span>`; }

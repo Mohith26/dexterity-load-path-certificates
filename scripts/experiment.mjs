@@ -13,7 +13,7 @@ export const RULES = [
   { key: 'cert05', label: 'Certified ≥ 0.05 g', rule: { kind: 'cert', margin: 0.05 } },
   { key: 'cert08', label: 'Certified ≥ 0.08 g', rule: { kind: 'cert', margin: 0.08 } },
 ];
-export const SHOW_SEED = 1007;
+export const SHOW_SEED = 1023;
 const r4 = (x) => +x.toFixed(4);
 
 if (import.meta.url === `file://${process.argv[1]}`) {
