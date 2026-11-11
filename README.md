@@ -29,7 +29,7 @@ Holding a 0.05 g margin after every placement, the certified agent packs **51.9%
 4. **Certificate.** If every box finds such a split, the force field is an exact static equilibrium of the rigid stack under that disturbance (given friction ≥ |a|, which for cardboard at these margins holds with room to spare). If some box cannot, it is reported as the box where no load path exists.
 5. **Margin.** Bisection on a in three directions (toward the open face, left, right) gives the margin. The agent tries candidates in its usual order and takes the first one whose resulting truck is certified at the margin floor in all three directions.
 
-The certificate is sufficient, not necessary: side contacts (neighbours, trailer walls, the previous wall) are ignored, which is conservative, and each load is split in one particular way. Closed-form tests pin it down: a single box tips exactly at a/g = depth/height, an overhang fails, a bridge over two supports with 52% base support passes, and a heavy box on top of an overhanging light box fails even though each placement passed a support-ratio check.
+The certificate is sufficient, not necessary: side contacts (neighbours, trailer walls, the previous wall) are ignored, which is conservative, and each load is split in one particular way. Closed-form tests pin it down: a single box tips exactly at a/g = depth/height, an overhang fails, a bridge over two supports with 52% base support passes, and a heavy box on top of an overhanging light box fails even though every box has two-thirds or more of its base supported.
 
 ## Tests
 
